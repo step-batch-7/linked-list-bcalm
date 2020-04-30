@@ -19,8 +19,15 @@ List_ptr create_list(void)
   return list;
 }
 
+void display_menu(void)
+{
+  printf("(a) add a number to the end of the list\n");
+  printf("Please enter the alphabet of the operation you would like to perform\n");
+}
+
 int main(void)
 {
   List_ptr list = create_list();
+  display_menu();
   return 0;
 }
