@@ -15,6 +15,7 @@ void display_menu(void)
 {
   printf("(a) add a number to the end of the list\n");
   printf("(b) add a number to the start of the list\n");
+  printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
   printf("\nPlease enter the alphabet of the operation you would like to perform\n");
 }
@@ -55,6 +56,16 @@ Status add_to_start(List_ptr list, int value)
   return Success;
 }
 
+void display(List_ptr list)
+{
+  Node *p_walk = list->head;
+  while (p_walk != NULL)
+  {
+    printf("Value is %d\n", p_walk->value);
+    p_walk = p_walk->next;
+  }
+}
+
 void perform_action(List_ptr list)
 {
   char command;
@@ -78,6 +89,10 @@ void perform_action(List_ptr list)
     printf("Enter a number:");
     scanf("%d", &number);
     Status status = add_to_start(list, number);
+  }
+  if (command == 'l')
+  {
+    display(list);
   }
 
   while ((getchar()) != '\n')
