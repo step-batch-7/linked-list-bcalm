@@ -7,6 +7,23 @@ typedef enum
   Success
 } Status;
 
+typedef enum
+{
+  a = 97,
+  b,
+  c,
+  d,
+  e,
+  f,
+  g,
+  h,
+  i,
+  j,
+  k,
+  l,
+  m
+} Command;
+
 typedef struct node
 {
   int value;

@@ -112,35 +112,51 @@ void perform_action(List_ptr list)
   display_menu();
   scanf("%c", &command);
 
-  if (command == EXIT)
+  switch (command)
   {
-    return;
-  }
-  if (command == 'a')
+  case a:
   {
     int number;
     printf("Enter a number:");
     scanf("%d", &number);
     Status status = add_to_end(list, number);
+    break;
   }
-  if (command == 'b')
+
+  case b:
   {
     int number;
     printf("Enter a number:");
     scanf("%d", &number);
     Status status = add_to_start(list, number);
+    break;
   }
-  if (command == 'e')
+
+  case e:
   {
     Status status = remove_from_start(list);
+    break;
   }
-  if (command == 'f')
+
+  case f:
   {
     Status status = remove_from_end(list);
+    break;
   }
-  if (command == 'l')
+
+  case l:
   {
     display(list);
+    break;
+  }
+
+  case m:
+    return;
+    break;
+
+  default:
+    printf("Invalid option\n");
+    break;
   }
 
   while ((getchar()) != '\n')
