@@ -8,6 +8,7 @@ void display_menu(void)
   printf("(e) remove a number from the beginning of the list\n");
   printf("(f) remove a number from the end of the list\n");
   printf("(g) remove a number from a given position in the list\n");
+  printf("(k) check if a number exists in the list\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
   printf("\nPlease enter the alphabet of the operation you would like to perform\n");
@@ -52,44 +53,46 @@ void perform_action(List_ptr list)
   switch (command)
   {
   case 'a':
-  {
     status = add_to_end(list, read_number());
     break;
-  }
 
   case 'b':
-  {
     status = add_to_start(list, read_number());
     break;
-  }
   case 'c':
-  {
     status = insert_at(list, read_number(), read_position());
     break;
-  }
 
   case 'e':
-  {
     status = remove_from_start(list);
     break;
-  }
 
   case 'f':
-  {
     status = remove_from_end(list);
     break;
-  }
+
   case 'g':
-  {
     status = remove_at(list, read_position());
     break;
-  }
-  case 'l':
+
+  case 'k':
   {
-    display(list);
+    if (has_number(list, read_number()))
+    {
+      printf("Number is present in the List\n");
+    }
+    else
+    {
+      printf("Number is not present in the List\n");
+    }
     status = Success;
     break;
   }
+
+  case 'l':
+    display(list);
+    status = Success;
+    break;
 
   case EXIT:
     return;

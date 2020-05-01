@@ -7,6 +7,12 @@
 
 typedef enum
 {
+  False,
+  True
+} Boolean;
+
+typedef enum
+{
   Failure,
   Success
 } Status;
@@ -34,6 +40,7 @@ void perform_action(List_ptr);
 int read_number(void);
 int read_position(void);
 void give_acknowledgement(Status);
+Boolean has_number(List_ptr, int);
 
 Status add_to_end(List_ptr, int value);
 Status add_to_start(List_ptr, int value);

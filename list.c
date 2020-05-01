@@ -148,3 +148,19 @@ Status remove_at(List_ptr list, int position)
   free(removed_node);
   return Success;
 }
+
+Boolean has_number(List_ptr list, int number)
+{
+  Node *p_walk = list->head;
+  int count = 1;
+  while (count <= list->count)
+  {
+    if (p_walk->value == number)
+    {
+      return True;
+    }
+    count++;
+    p_walk = p_walk->next;
+  }
+  return False;
+}
