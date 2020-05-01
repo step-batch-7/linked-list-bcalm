@@ -131,7 +131,6 @@ Status remove_at(List_ptr list, int position)
   {
     return Failure;
   }
-  list->count--;
   if (position == 1)
   {
     return remove_from_start(list);
@@ -146,12 +145,13 @@ Status remove_at(List_ptr list, int position)
   Node_ptr next_node = removed_node->next;
   current->next = next_node;
   free(removed_node);
+  list->count--;
   return Success;
 }
 
 Boolean has_number(List_ptr list, int number)
 {
-  Node *p_walk = list->head;
+  Node_ptr p_walk = list->head;
   int count = 1;
   while (count <= list->count)
   {
@@ -163,4 +163,24 @@ Boolean has_number(List_ptr list, int number)
     p_walk = p_walk->next;
   }
   return False;
+}
+
+Status remove_first_occurrence(List_ptr list, int value)
+{
+  if (!has_number(list, value))
+  {
+    return Failure;
+  }
+  Node_ptr p_walk = list->head;
+  int count = 1;
+  while (count <= list->count)
+  {
+    if (p_walk->value == value)
+    {
+      break;
+    }
+    count++;
+    p_walk = p_walk->next;
+  }
+  return remove_at(list, count);
 }
