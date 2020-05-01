@@ -9,6 +9,7 @@ void display_menu(void)
   printf("(f) remove a number from the end of the list\n");
   printf("(g) remove a number from a given position in the list\n");
   printf("(h) remove first occurrence of a number\n");
+  printf("(i) remove all occurrences of a number\n");
   printf("(k) check if a number exists in the list\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
@@ -78,6 +79,10 @@ void perform_action(List_ptr list)
 
   case 'h':
     status = remove_first_occurrence(list, read_number());
+    break;
+
+  case 'i':
+    status = remove_all_occurrences(list, read_number());
     break;
 
   case 'k':
