@@ -5,6 +5,7 @@ void display_menu(void)
   printf("(a) add a number to the end of the list\n");
   printf("(b) add a number to the start of the list\n");
   printf("(c) insert a number at a given position in the list\n");
+  printf("(d) add a unique item on the list at the end\n");
   printf("(e) remove a number from the beginning of the list\n");
   printf("(f) remove a number from the end of the list\n");
   printf("(g) remove a number from a given position in the list\n");
@@ -63,6 +64,10 @@ void perform_action(List_ptr list)
     break;
   case 'c':
     status = insert_at(list, read_number(), read_position());
+    break;
+
+  case 'd':
+    status = add_unique(list, read_number());
     break;
 
   case 'e':

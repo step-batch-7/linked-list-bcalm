@@ -196,3 +196,12 @@ Status remove_all_occurrences(List_ptr list, int value)
 
   return remove_all_occurrences(list, value);
 }
+
+Status add_unique(List_ptr list, int value)
+{
+  if (has_number(list, value))
+  {
+    return Failure;
+  }
+  return add_to_end(list, value);
+}
