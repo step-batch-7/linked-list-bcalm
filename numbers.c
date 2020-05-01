@@ -15,6 +15,7 @@ void display_menu(void)
 {
   printf("(a) add a number to the end of the list\n");
   printf("(b) add a number to the start of the list\n");
+  printf("(e) remove a number from the beginning of the list\n");
   printf("(f) remove a number from the end of the list\n");
   printf("(l) display the list of numbers\n");
   printf("(m) exit\n");
@@ -67,6 +68,19 @@ void display(List_ptr list)
   }
 }
 
+Status remove_from_start(List_ptr list)
+{
+  if (list->head == NULL)
+  {
+    return Failure;
+  }
+  Node_ptr next_node = list->head->next;
+  free(list->head);
+  list->head = next_node;
+  list->count--;
+  return Success;
+}
+
 Status remove_from_end(List_ptr list)
 {
   if (list->head == NULL)
@@ -115,6 +129,10 @@ void perform_action(List_ptr list)
     printf("Enter a number:");
     scanf("%d", &number);
     Status status = add_to_start(list, number);
+  }
+  if (command == 'e')
+  {
+    Status status = remove_from_start(list);
   }
   if (command == 'f')
   {
