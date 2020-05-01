@@ -215,3 +215,9 @@ Status clear_list(List_ptr list)
   }
   return clear_list(list);
 }
+
+void destroy_list(List_ptr list)
+{
+  clear_list(list);
+  free(list);
+}

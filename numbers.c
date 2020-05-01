@@ -133,5 +133,6 @@ int main(void)
   char command;
   List_ptr list = create_list();
   perform_action(list);
+  destroy_list(list);
   return 0;
 }
