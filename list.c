@@ -205,3 +205,13 @@ Status add_unique(List_ptr list, int value)
   }
   return add_to_end(list, value);
 }
+
+Status clear_list(List_ptr list)
+{
+  Status status = remove_from_end(list);
+  if (list->count == 0)
+  {
+    return status;
+  }
+  return clear_list(list);
+}
