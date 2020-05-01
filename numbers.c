@@ -1,94 +1,94 @@
 #include "list.h"
 
-List_ptr create_list(void)
+void display_menu(void)
 {
-  List_ptr list = malloc(sizeof(List));
-  list->head = NULL;
-  list->last = NULL;
-  list->count = 0;
-  return list;
+  printf("(a) add a number to the end of the list\n");
+  printf("(b) add a number to the start of the list\n");
+  printf("(c) insert a number at a given position in the list\n");
+  printf("(e) remove a number from the beginning of the list\n");
+  printf("(f) remove a number from the end of the list\n");
+  printf("(l) display the list of numbers\n");
+  printf("(m) exit\n");
+  printf("\nPlease enter the alphabet of the operation you would like to perform\n");
 }
 
-Status add_to_end(List_ptr list, int number)
+int read_number()
 {
-  Node_ptr new_node = malloc(sizeof(Node));
-  if (new_node == NULL)
-  {
-    return Failure;
-  }
-  new_node->value = number;
-  new_node->next = NULL;
-  if (list->head == NULL)
-  {
-    list->head = new_node;
-  }
-  else
-  {
-    list->last->next = new_node;
-  }
-  list->last = new_node;
-  list->count += 1;
-  return Success;
+  int number;
+  printf("Enter a number:");
+  scanf("%d", &number);
+  return number;
 }
 
-Status add_to_start(List_ptr list, int value)
+int read_position()
 {
-  Node_ptr new_node = malloc(sizeof(Node));
-  if (new_node == NULL)
-  {
-    return Failure;
-  }
-  new_node->value = value;
-  new_node->next = list->head;
-  list->head = new_node;
-  list->count++;
-  return Success;
+  int number;
+  printf("Enter position:");
+  scanf("%d", &number);
+  return number;
 }
 
-void display(List_ptr list)
+void perform_action(List_ptr list)
 {
-  Node *p_walk = list->head;
-  while (p_walk != NULL)
+  char command;
+  display_menu();
+  scanf("%c", &command);
+
+  switch (command)
   {
-    printf("Value is %d\n", p_walk->value);
-    p_walk = p_walk->next;
+  case 'a':
+  {
+    Status status = add_to_end(list, read_number());
+    break;
   }
+
+  case 'b':
+  {
+    Status status = add_to_start(list, read_number());
+    break;
+  }
+  case 'c':
+  {
+    Status status = insert_at(list, read_number(), read_position());
+    break;
+  }
+
+  case 'e':
+  {
+    Status status = remove_from_start(list);
+    break;
+  }
+
+  case 'f':
+  {
+    Status status = remove_from_end(list);
+    break;
+  }
+
+  case 'l':
+  {
+    display(list);
+    break;
+  }
+
+  case EXIT:
+    return;
+    break;
+
+  default:
+    printf("Invalid option\n");
+    break;
+  }
+
+  while ((getchar()) != '\n')
+    ;
+  return perform_action(list);
 }
 
-Status remove_from_start(List_ptr list)
+int main(void)
 {
-  if (list->head == NULL)
-  {
-    return Failure;
-  }
-  Node_ptr next_node = list->head->next;
-  free(list->head);
-  list->head = next_node;
-  list->count--;
-  return Success;
-}
-
-Status remove_from_end(List_ptr list)
-{
-  if (list->head == NULL)
-  {
-    return Failure;
-  }
-  list->count--;
-  if (list->head->next == NULL)
-  {
-    free(list->head);
-    list->head = NULL;
-    return Success;
-  }
-
-  Node_ptr current = list->head;
-  while (current->next->next != NULL)
-  {
-    current = current->next;
-  }
-
-  free(current->next);
-  current->next = NULL;
-  return Success;
+  char command;
+  List_ptr list = create_list();
+  perform_action(list);
+  return 0;
 }

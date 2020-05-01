@@ -11,23 +11,6 @@ typedef enum
   Success
 } Status;
 
-typedef enum
-{
-  a = 97,
-  b,
-  c,
-  d,
-  e,
-  f,
-  g,
-  h,
-  i,
-  j,
-  k,
-  l,
-  m
-} Command;
-
 typedef struct node
 {
   int value;
@@ -49,6 +32,7 @@ List_ptr create_list(void);
 void display_menu(void);
 void perform_action(List_ptr list);
 int read_number();
+int read_position();
 
 Status add_to_end(List_ptr, int value);
 Status add_to_start(List_ptr, int value);
