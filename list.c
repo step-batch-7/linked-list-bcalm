@@ -123,3 +123,27 @@ Status insert_at(List_ptr list, int value, int position)
   list->count++;
   return Success;
 }
+
+Status remove_at(List_ptr list, int position)
+{
+  if (list->head == NULL || list->count < position || position <= 0)
+  {
+    return Failure;
+  }
+  list->count--;
+  if (position == 1)
+  {
+    return remove_from_start(list);
+  }
+  Node_ptr current = list->head;
+  for (int count = 1; count < position - 1; count++)
+  {
+    current = current->next;
+  }
+
+  Node_ptr removed_node = current->next;
+  Node_ptr next_node = removed_node->next;
+  current->next = next_node;
+  free(removed_node);
+  return Success;
+}
