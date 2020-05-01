@@ -30,9 +30,10 @@ typedef List *List_ptr;
 
 List_ptr create_list(void);
 void display_menu(void);
-void perform_action(List_ptr list);
-int read_number();
-int read_position();
+void perform_action(List_ptr);
+int read_number(void);
+int read_position(void);
+void give_acknowledgement(Status);
 
 Status add_to_end(List_ptr, int value);
 Status add_to_start(List_ptr, int value);

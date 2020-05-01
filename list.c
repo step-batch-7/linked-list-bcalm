@@ -55,9 +55,10 @@ void display(List_ptr list)
   Node_ptr p_walk = list->head;
   while (p_walk != NULL)
   {
-    printf("Value is %d\n", p_walk->value);
+    printf("Element is %d\n", p_walk->value);
     p_walk = p_walk->next;
   }
+  printf("Total elements in list is/are %d", list->count);
 }
 
 Status remove_from_start(List_ptr list)
