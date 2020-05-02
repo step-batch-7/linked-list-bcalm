@@ -18,14 +18,12 @@ Status add_to_end(List_ptr list, int number)
   }
   new_node->value = number;
   new_node->next = NULL;
-  if (list->head == NULL)
+  Node_ptr *ptr_to_set = &list->head;
+  if (list->head != NULL)
   {
-    list->head = new_node;
+    ptr_to_set = &list->last->next; 
   }
-  else
-  {
-    list->last->next = new_node;
-  }
+  (*ptr_to_set) = new_node; 
   list->last = new_node;
   list->count += 1;
   return Success;
