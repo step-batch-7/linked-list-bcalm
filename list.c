@@ -170,7 +170,7 @@ Status remove_first_occurrence(List_ptr list, int value)
     return Failure;
   }
   Node_ptr p_walk = list->head;
-  int count = 1;
+  int count = 0;
   while (count <= list->count)
   {
     if (p_walk->value == value)
