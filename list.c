@@ -100,14 +100,14 @@ Status remove_from_end(List_ptr list)
 Status insert_at(List_ptr list, int value, int position)
 {
   Node_ptr new_node = malloc(sizeof(Node));
-  if (new_node == NULL || list->count + 1 < position || position <= 0)
+  if (new_node == NULL || list->count < position || position < 0)
   {
     return Failure;
   }
   new_node->value = value;
   new_node->next = NULL;
 
-  if (position == 1)
+  if (position == 0)
   {
     return add_to_start(list, value);
   }
@@ -125,11 +125,11 @@ Status insert_at(List_ptr list, int value, int position)
 
 Status remove_at(List_ptr list, int position)
 {
-  if (list->head == NULL || list->count < position || position <= 0)
+  if (list->head == NULL || list->count - 1 < position || position < 0)
   {
     return Failure;
   }
-  if (position == 1)
+  if (position == 0)
   {
     return remove_from_start(list);
   }
