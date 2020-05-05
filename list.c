@@ -65,10 +65,10 @@ Status remove_from_start(List_ptr list)
   {
     return Failure;
   }
+  list->count--;
   Node_ptr next_node = list->head->next;
   free(list->head);
   list->head = next_node;
-  list->count--;
   return Success;
 }
 
@@ -113,7 +113,7 @@ Status insert_at(List_ptr list, int value, int position)
   }
 
   Node_ptr current = list->head;
-  for (int count = 1; count < position - 1; count++)
+  for (int count = 0; count < position - 1; count++)
   {
     current = current->next;
   }
@@ -134,7 +134,7 @@ Status remove_at(List_ptr list, int position)
     return remove_from_start(list);
   }
   Node_ptr current = list->head;
-  for (int count = 1; count < position - 1; count++)
+  for (int count = 0; count < position - 1; count++)
   {
     current = current->next;
   }
