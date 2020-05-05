@@ -38,6 +38,10 @@ Status add_to_start(List_ptr list, int value)
   }
   new_node->value = value;
   new_node->next = list->head;
+
+  if(list->count == 0){
+    list->last = new_node;
+  }
   list->head = new_node;
   list->count++;
   return Success;
@@ -65,6 +69,9 @@ Status remove_from_start(List_ptr list)
   {
     return Failure;
   }
+  if(list->count == 1){
+    list->last = NULL;
+  }
   list->count--;
   Node_ptr next_node = list->head->next;
   free(list->head);
@@ -83,6 +90,7 @@ Status remove_from_end(List_ptr list)
   {
     free(list->head);
     list->head = NULL;
+    list->last = NULL;
     return Success;
   }
 
