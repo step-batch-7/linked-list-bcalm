@@ -116,7 +116,10 @@ Status insert_at(List_ptr list, int value, int position)
   {
     return add_to_start(list, value);
   }
-
+  if (position == list->count)
+  {
+    return add_to_end(list, value);
+  }
   Node_ptr current = list->head;
   for (int count = 0; count < position - 1; count++)
   {
