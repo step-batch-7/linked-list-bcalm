@@ -134,9 +134,9 @@ Status remove_at(List_ptr list, int position)
   {
     return Failure;
   }
-  if (position == 0)
+  if (position == list->count-1)
   {
-    return remove_from_start(list);
+    return remove_from_end(list);
   }
   Node_ptr current = list->head;
   for (int count = 0; count < position - 1; count++)
